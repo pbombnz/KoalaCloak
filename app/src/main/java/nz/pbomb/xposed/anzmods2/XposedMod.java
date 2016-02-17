@@ -20,7 +20,7 @@ public class XposedMod implements IXposedHookLoadPackage {
         // Modification Check 1
         XposedHelpers.findAndHookMethod("anj", loadPackageParam.classLoader, "a", XC_MethodReplacement.returnConstant(false));
 
-        // USB Debugging Mode Check 2
+        // USB Debugging Mode Check 1
         XposedHelpers.findAndHookMethod("anj", loadPackageParam.classLoader, "c", Context.class, XC_MethodReplacement.returnConstant(true));
 
         // Modification Check 2
