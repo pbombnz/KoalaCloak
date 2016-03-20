@@ -1,14 +1,9 @@
 package nz.pbomb.xposed.anzmods2;
 
 import android.content.Context;
-import android.util.Log;
-
-import java.util.logging.Logger;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
@@ -16,19 +11,29 @@ public class XposedMod implements IXposedHookLoadPackage {
     private static final String ANZ_AU_MOBILE_PAY = "com.anz.mobilepay";
     private static final String ANZ_AU_SHIELD = "enterprise.com.anz.shield";
 
-    private static final String NAB = "au.com.nab.mobile";
+    //private static final String NAB = "au.com.nab.mobile";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
         if(loadPackageParam.packageName.equals(ANZ_AU_MOBILE_PAY)) {
+            /* 1.0.2 Code that is obsolete
             // Modification Check 1
-            XposedHelpers.findAndHookMethod("anj", loadPackageParam.classLoader, "a", XC_MethodReplacement.returnConstant(false));
+            //XposedHelpers.findAndHookMethod("anj", loadPackageParam.classLoader, "a", XC_MethodReplacement.returnConstant(false));
 
             // USB Debugging Mode Check 1
-            XposedHelpers.findAndHookMethod("anj", loadPackageParam.classLoader, "c", Context.class, XC_MethodReplacement.returnConstant(true));
+            //XposedHelpers.findAndHookMethod("anj", loadPackageParam.classLoader, "c", Context.class, XC_MethodReplacement.returnConstant(true));
 
             // Modification Check 2
-            XposedHelpers.findAndHookMethod("anh", loadPackageParam.classLoader, "b", XC_MethodReplacement.returnConstant(false));
+            //XposedHelpers.findAndHookMethod("anh", loadPackageParam.classLoader, "b", XC_MethodReplacement.returnConstant(false));
+            */
+
+            // Modification Check - Add Flags to Collection if bad things are detected. Therefore return empty collection
+            Object collection = XposedHelpers.newInstance(XposedHelpers.findClass("com.anz.util.Collection", loadPackageParam.classLoader));
+            XposedHelpers.findAndHookMethod("va", loadPackageParam.classLoader, "a", XC_MethodReplacement.returnConstant(collection));
+
+            //Disable Debug Enabled Check
+            XposedHelpers.findAndHookMethod("amz", loadPackageParam.classLoader, "c", XC_MethodReplacement.returnConstant(false));
+
         } else if(loadPackageParam.packageName.equals(ANZ_AU_SHIELD)) {
             // Developer Settings Check 1
             XposedHelpers.findAndHookMethod("enterprise.com.anz.shield.a.g", loadPackageParam.classLoader, "a", Context.class, XC_MethodReplacement.returnConstant(false));
