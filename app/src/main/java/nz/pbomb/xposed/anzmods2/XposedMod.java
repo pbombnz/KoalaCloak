@@ -49,7 +49,7 @@ public class XposedMod implements IXposedHookLoadPackage {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     if(DEBUG_TRACE) {
-                        //XposedBridge.log("Rooted.value() returns \"0\".");
+                        XposedBridge.log("Westpac - com.splunk.mint.Utils.checkForRoot() override.");
                         //Log.d("SuperKiwi", Log.getStackTraceString(new Exception()));
                     }
                     param.setResult(false);
@@ -60,7 +60,7 @@ public class XposedMod implements IXposedHookLoadPackage {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     if(DEBUG_TRACE) {
-                        //XposedBridge.log("Rooted.value() returns \"0\".");
+                        XposedBridge.log("Westpac - com.westpac.banking.android.commons.environment.AndroidEnvironmentProvider.isDeviceRooted() override.");
                         //Log.d("SuperKiwi", Log.getStackTraceString(new Exception()));
                     }
                     param.setResult(false);
