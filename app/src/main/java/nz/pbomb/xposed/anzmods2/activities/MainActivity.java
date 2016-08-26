@@ -1,4 +1,4 @@
-package nz.pbomb.xposed.anzmods2;
+package nz.pbomb.xposed.anzmods2.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import nz.pbomb.xposed.anzmods2.R;
 
 public class MainActivity extends AppCompatActivity {
 
