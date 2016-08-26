@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/MainActivity__menu_main__Donate"
+        android:orderInCategory="2"
+        android:title="@string/MainActivity__menu_main__Donate"/>
+    <item
+        android:id="@+id/MainActivity__menu_main__Contact"
+        android:orderInCategory="3"
+        android:title="@string/MainActivity__menu_main__Contact" />
+    <item
+        android:id="@+id/MainActivity___menu_main__SourceCode"
+        android:orderInCategory="4"
+        android:title="@string/MainActivity___menu_main__SourceCode" />
+    <item
+        android:id="@+id/MainActivity__menu_main__XDAThread"
+        android:orderInCategory="5"
+        android:title="@string/MainActivity__menu_main__XDAThread" />
+
+    <item
+        android:id="@+id/MainActivity__menu_main__About"
+        android:orderInCategory="6"
+        android:title="@string/MainActivity__menu_main__About" />
+</menu>
