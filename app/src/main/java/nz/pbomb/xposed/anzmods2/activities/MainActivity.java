@@ -30,17 +30,16 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = null;
         switch (item.getItemId()) {
             case R.id.MainActivity__menu_main__Donate:
-                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.uri_global_paypal)));
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.Paypal)));
                 break;
             case R.id.MainActivity__menu_main__Contact:
-                //intent = new Intent(getApplicationContext(), ContactActivity.class);
-                //break;
-                return true;
+                intent = new Intent(getApplicationContext(), ContactActivity.class);
+                break;
             case R.id.MainActivity___menu_main__SourceCode:
-                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.uri_global_SourceCode)));
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.SourceCode)));
                 break;
             case R.id.MainActivity__menu_main__XDAThread:
-                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.uri_global_XDAThread)));
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.XDAThread)));
                 break;
             case R.id.MainActivity__menu_main__About:
                 //intent = new Intent(getApplicationContext(), AboutActivity.class);
