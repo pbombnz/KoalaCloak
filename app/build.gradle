@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 24
@@ -16,12 +17,22 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            versionNameSuffix '-DEBUG'
+        }
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
     provided 'de.robv.android.xposed:api:81'
     provided 'de.robv.android.xposed:api:81:sources'
+
+    apt 'com.jakewharton:butterknife-compiler:8.1.0'
+    compile 'com.jakewharton:butterknife:8.1.0'
+
+    compile 'com.crossbowffs.remotepreferences:remotepreferences:0.1'
+
     compile 'com.android.support:appcompat-v7:24.2.0'
 }
