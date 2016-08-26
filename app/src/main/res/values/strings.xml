@@ -29,4 +29,23 @@
         You\'d be surprised how many people emailed me with no message.
     </string>
 
+    <string name="AboutActivity_label">About</string>
+    <string name="AboutActivity_author_logo">PBomb Logo</string>
+    <string name="AboutActivity_author_title">Author</string>
+    <string name="AboutActivity_author_1"><a href="https://github.com/PBombNZ/">Prashant B. (PBombNZ)</a></string>
+    <string name="AboutActivity_contributer_title">Libraries Used and Contributions</string>
+    <string name="AboutActivity_contributer_text_1">rovo89 - <a href="https://github.com/rovo89/">Xposed Bridge Framework</a></string>
+    <string name="AboutActivity_LicenseAndCP_title">License &amp; Copyright</string>
+    <string name="AboutActivity_LicenseAndCP_text">
+        Copyright 2016 Prashant B.\n
+        &lt;pbomb.nz@gmail.com&gt;\n
+        \n
+        This source code of this program is distributed under the terms of the GNU General Public License v3.
+    </string>
+    <string name="AboutActivity_disclaimer_title">Disclaimer</string>
+    <string name="AboutActivity_disclaimer_message">
+        The author and contributors of this module take no responsibility for any loss of data,
+        monetary loss, damage to your device or any other consequences that arise as a result of
+        using this program.\\n\\nUSE AT YOUR OWN RISK.
+    </string>
 </resources>
