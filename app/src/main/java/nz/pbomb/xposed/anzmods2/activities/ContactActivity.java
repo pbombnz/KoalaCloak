@@ -61,7 +61,7 @@ public class ContactActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @OnClick(R.id.contact_xda_button)
+    @OnClick(R.id.ContactActivity_XDAThreadButton)
     public void onXDAButtonClicked() {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.XDAThread))));
     }
