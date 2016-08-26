@@ -2,13 +2,31 @@
     <!--string name="app_name">ANZ Mobile Pay Root Detection Bypass</string-->
     <string name="app_name">SuperSomething</string>
 
-    <string name="uri_global_paypal">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=QNQDESEMGWDPY</string>
-    <string name="uri_global_XDAThread">http://forum.xda-developers.com/xposed/modules/xposed-anz-mobile-pay-root-detection-t3340845</string>
-    <string name="uri_global_SourceCode">https://github.com/pbombnz/ANZMobilePayRootDetectionBypass</string>
+    <string name="Paypal">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=QNQDESEMGWDPY</string>
+    <string name="XDAThread">http://forum.xda-developers.com/xposed/modules/xposed-anz-mobile-pay-root-detection-t3340845</string>
+    <string name="SourceCode">https://github.com/pbombnz/ANZMobilePayRootDetectionBypass</string>
+
     <string name="MainActivity__menu_main__Donate">Donate</string>
     <string name="MainActivity__menu_main__Contact">Contact Me</string>
     <string name="MainActivity___menu_main__SourceCode">Source Code</string>
     <string name="MainActivity__menu_main__XDAThread">XDA Thread</string>
     <string name="MainActivity__menu_main__About">About</string>
+
+    <string name="ContactActivity_label">Contact Me</string>
+    <string name="ContactActivity_XDAThreadButton">XDA Thread</string>
+    <string name="ContactActivity_EmailButton">Email (Preferred)</string>
+    <string name="ContactActivity_TwitterButton">Twitter</string>
+    <string name="ContactActivity_BodyMessage">
+        Depending on the issue, I might not always be the best person to contact. If you
+        have a payment issue, most likely contact the application provider or your bank for support.
+        If you are having root detection problem or the module is not working then its best to
+        contact me via XDA or email.\n
+        \n
+        You can contact me using any of the methods below where you can send me feedback,
+        bug reports, feature requests or to simply follow me on social media for updates.\n
+        \n
+        Remember to actually write an actual message when contacting me!
+        You\'d be surprised how many people emailed me with no message.
+    </string>
 
 </resources>

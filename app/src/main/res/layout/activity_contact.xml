@@ -7,6 +7,48 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="nz.pbomb.xposed.anzmods2.activities.ContactActivity">
+    tools:context=".activities.ContactActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16sp"
+            android:layout_gravity="center_horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/ContactActivity_BodyMessage"
+                android:gravity="center"
+                android:paddingBottom="16sp"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="250sp"
+                android:layout_height="wrap_content"
+                android:text="@string/ContactActivity_TwitterButton"
+                android:id="@+id/ContactActivity_TwitterButton"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="250sp"
+                android:layout_height="wrap_content"
+                android:text="@string/ContactActivity_EmailButton"
+                android:id="@+id/ContactActivity_EmailButton"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="250sp"
+                android:layout_height="wrap_content"
+                android:text="@string/ContactActivity_XDAThreadButton"
+                android:id="@+id/ContactActivity_XDAThreadButton"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
