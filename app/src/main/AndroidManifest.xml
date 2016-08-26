@@ -32,7 +32,11 @@
             android:label="@string/ContactActivity_label"
             android:parentActivityName=".activities.MainActivity"
             />
-
+        <activity
+            android:name=".activities.AboutActivity"
+            android:label="@string/AboutActivity_label"
+            android:parentActivityName=".activities.MainActivity"
+            />
     </application>
 
 </manifest>

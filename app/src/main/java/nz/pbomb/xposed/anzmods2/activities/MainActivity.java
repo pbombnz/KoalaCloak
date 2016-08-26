@@ -42,9 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.XDAThread)));
                 break;
             case R.id.MainActivity__menu_main__About:
-                //intent = new Intent(getApplicationContext(), AboutActivity.class);
-                //break;
-                return true;
+                intent = new Intent(getApplicationContext(), AboutActivity.class);
+                break;
         }
         startActivity(intent);
         return true;
