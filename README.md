@@ -1,5 +1,9 @@
 # KoalaCloak (Previously known as ANZMobilePayRootDetectionBypass)
-An Xposed Module for Android that allows Australian users to use their modified devices with popular banking applications.
+An Xposed Module for Android that allows Australian users to use their modified devices with popular banking and financial applications such as ANZ Mobile Pay, ANZ Shield and Westpac Mobile Banking. With this enabled, you can have Tap'n'Pay on rooted and non-supported devices.
+
+NAB is currently being looked into but is much more sophisticated than the other banking and financial applications. The problem seems to be in the native library which is pass the limits of the Xposed Framework.
+
+CUA redi2PAY and People's Choice redi2PAY have been removed due to lack of demand. If you would like these be added in the xposed module, please contact me via Email.
 
 For more general information about the module please visit the [XDA thread link](http://forum.xda-developers.com/xposed/modules/xposed-anz-mobile-pay-root-detection-t3340845).
 
