@@ -4,16 +4,18 @@ package nz.pbomb.xposed.anzmods2;
 public class Common {
     private static Common ourInstance = new Common();
 
-    private final String AppPackage = "nz.pbomb.xposed.anzmods2";
+    public final boolean DEBUG = false;
+
+    public final String PACKAGE_APP = "nz.pbomb.xposed.anzmods2";
+    public final String PACKAGE_ANZ_AU_MOBILE_PAY = "com.anz.mobilepay";
+    public final String PACKAGE_ANZ_AU_SHIELD = "enterprise.com.anz.shield";
+    public final String PACKAGE_NAB = "au.com.nab.mobile";
+    public final String PACKAGE_WESTPAC = "org.westpac.bank";
 
     private Common() {
     }
 
     public static Common getInstance() {
         return ourInstance;
-    }
-
-    public String getAppPackage() {
-        return AppPackage;
     }
 }
