@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/NestedPreferenceActivity_PreferenceFragment__PreferenceCategory_title">
+        <Preference
+            android:key="anzMobilePaySystemIntegrity"
+            android:title="@string/NestedPreferenceActivity_PreferenceFragment__anzMobilePaySystemIntegrity_title"
+            android:summary="@string/NestedPreferenceActivity_PreferenceFragment__anzMobilePaySystemIntegrity_summary"
+            />
+        <Preference
+            android:key="anzMobilePayDebugSettingDetection"
+            android:title="@string/NestedPreferenceActivity_PreferenceFragment__anzMobilePayDebugSettingDetection_title"
+            android:summary="@string/NestedPreferenceActivity_PreferenceFragment__anzMobilePayDebugSettingDetection_summary"
+            />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -2,15 +2,28 @@
     <!--string name="app_name">ANZ Mobile Pay Root Detection Bypass</string-->
     <string name="app_name">KoalaCloak</string>
 
+
+
     <string name="Paypal">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=QNQDESEMGWDPY</string>
     <string name="XDAThread">http://forum.xda-developers.com/xposed/modules/xposed-anz-mobile-pay-root-detection-t3340845</string>
     <string name="SourceCode">https://github.com/pbombnz/ANZMobilePayRootDetectionBypass</string>
+
+
 
     <string name="MainActivity__menu_main__Donate">Donate</string>
     <string name="MainActivity__menu_main__Contact">Contact Me</string>
     <string name="MainActivity___menu_main__SourceCode">Source Code</string>
     <string name="MainActivity__menu_main__XDAThread">XDA Thread</string>
     <string name="MainActivity__menu_main__About">About</string>
+
+    <string name="MainActivity_PreferenceFragment__anzMobilePayPrefs_title">ANZ Mobile Pay</string>
+    <string name="MainActivity_PreferenceFragment__anzMobilePayPrefs_summary">Toggle settings to hide root and debug/developer options for ANZ Mobile Pay.</string>
+    <string name="MainActivity_PreferenceFragment__anzShieldPrefs_title">ANZ Shield</string>
+    <string name="MainActivity_PreferenceFragment__anzShieldPrefs_summary">Toggle settings to hide debug/developer options from ANZ Shield.</string>
+    <string name="MainActivity_PreferenceFragment_westpacPrefs_title">Westpac Mobile Banking (Work In Progress)</string>
+    <string name="MainActivity_PreferenceFragment__westpacPrefs_summary">Toggle settings to hide root from the Westpac Mobile Banking application.</string>
+
+
 
     <string name="ContactActivity_label">Contact Me</string>
     <string name="ContactActivity_XDAThreadButton">XDA Thread</string>
@@ -28,6 +41,8 @@
         Remember to actually write an actual message when contacting me!
         You\'d be surprised how many people emailed me with no message.
     </string>
+
+
 
     <string name="AboutActivity_label">About</string>
     <string name="AboutActivity_author_logo">PBomb Logo</string>
@@ -49,10 +64,16 @@
         using this program.\\n\\nUSE AT YOUR OWN RISK.
     </string>
 
-    <string name="MainActivity_PreferenceFragment__anzMobilePayPrefs_title">ANZ Mobile Pay</string>
-    <string name="MainActivity_PreferenceFragment__anzMobilePayPrefs_summary" />
-    <string name="MainActivity_PreferenceFragment__anzShieldPrefs_title">ANZ Shield</string>
-    <string name="MainActivity_PreferenceFragment__anzShieldPrefs_summary" />
-    <string name="MainActivity_PreferenceFragment_westpacPrefs_title">Westpac Mobile Banking</string>
-    <string name="MainActivity_PreferenceFragment__westpacPrefs_summary" />
+
+
+    <string name="NestedPreferenceActivity_PreferenceFragment__PreferenceCategory_title">Application Toggles</string>
+
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePaySystemIntegrity_title" />
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePaySystemIntegrity_summary" />
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePayDebugSettingDetection_title" />
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePayDebugSettingDetection_summary" />
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettingsInvisible_title" />
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettingsInvisible_summary" />
+    <string name="NestedPreferenceActivity_PreferenceFragment__westpacRootDetection_title" />
+    <string name="NestedPreferenceActivity_PreferenceFragment__westpacRootDetectionRootDetection_summary" />
 </resources>

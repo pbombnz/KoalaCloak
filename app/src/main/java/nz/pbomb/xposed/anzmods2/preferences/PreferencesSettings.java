@@ -4,7 +4,8 @@ package nz.pbomb.xposed.anzmods2.preferences;
 public class PreferencesSettings {
     public static final class DEFAULT_VALUES {
         public static final class ANZ_MOBILE_PAY {
-            public static final boolean ROOT_DETECTION = true; // true, means that the root mounts are hidden.
+            public static final boolean SYSTEM_INTEGRITY = true; // true, means that the root mounts are hidden.
+            public static final boolean DEBUG_SETTINGS_DETECTION = true;
         }
 
         public static final class ANZ_SHIELD {
@@ -18,7 +19,8 @@ public class PreferencesSettings {
 
     public static final class KEYS {
         public static final class ANZ_MOBILE_PAY {
-            public static final String ROOT_DETECTION = "anzMobilePayRootDetection";
+            public static final String SYSTEM_INTEGRITY = "anzMobilePaySystemIntegrity";
+            public static final String DEBUG_SETTINGS_DETECTION = "anzMobilePayDebugSettingDetection";
         }
 
         public static final class ANZ_SHIELD {
