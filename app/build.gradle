@@ -30,9 +30,10 @@ dependencies {
     provided 'de.robv.android.xposed:api:81:sources'
 
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
+
+
     compile 'com.jakewharton:butterknife:8.1.0'
-
     compile 'com.crossbowffs.remotepreferences:remotepreferences:0.1'
-
     compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:support-v4:24.2.0'
 }

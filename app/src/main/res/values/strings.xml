@@ -48,4 +48,11 @@
         monetary loss, damage to your device or any other consequences that arise as a result of
         using this program.\\n\\nUSE AT YOUR OWN RISK.
     </string>
+
+    <string name="MainActivity_PreferenceFragment__anzMobilePayPrefs_title">ANZ Mobile Pay</string>
+    <string name="MainActivity_PreferenceFragment__anzMobilePayPrefs_summary" />
+    <string name="MainActivity_PreferenceFragment__anzShieldPrefs_title">ANZ Shield</string>
+    <string name="MainActivity_PreferenceFragment__anzShieldPrefs_summary" />
+    <string name="MainActivity_PreferenceFragment_westpacPrefs_title">Westpac Mobile Banking</string>
+    <string name="MainActivity_PreferenceFragment__westpacPrefs_summary" />
 </resources>

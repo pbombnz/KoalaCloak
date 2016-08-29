@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Application Preferences">
+        <Preference
+            android:key="anzMobilePayPrefs"
+            android:title="@string/MainActivity_PreferenceFragment__anzMobilePayPrefs_title"
+            android:summary="@string/MainActivity_PreferenceFragment__anzMobilePayPrefs_summary"
+            />
+        <Preference
+            android:key="anzShieldPrefs"
+            android:title="@string/MainActivity_PreferenceFragment__anzShieldPrefs_title"
+            android:summary="@string/MainActivity_PreferenceFragment__anzShieldPrefs_summary"
+            />
+        <Preference
+            android:key="westpacPrefs"
+            android:title="@string/MainActivity_PreferenceFragment_westpacPrefs_title"
+            android:summary="@string/MainActivity_PreferenceFragment__westpacPrefs_summary"
+            />
+    </PreferenceCategory>
+</PreferenceScreen>

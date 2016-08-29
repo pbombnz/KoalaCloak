@@ -10,14 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activities.MainActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
+
+    <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        >
-
-    </LinearLayout>
+        android:name="nz.pbomb.xposed.anzmods2.fragments.MainActivity_PreferenceFragment"
+        android:id="@+id/MainActivity_PreferenceFragment"
+         />
 </RelativeLayout>
