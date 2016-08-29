@@ -1,19 +1,141 @@
 package nz.pbomb.xposed.anzmods2;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.crossbowffs.remotepreferences.RemotePreferences;
+
+import java.util.Map;
+
 import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import nz.pbomb.xposed.anzmods2.preferences.PreferencesSettings;
 
-public class XposedMod implements IXposedHookLoadPackage {
+public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage {
+    private static XSharedPreferences prefs;
+    private static SharedPreferences sharedPreferences;
+
+    /**
+     * Displays a message in Xposed Logs and logcat if and only if Debug Mode is enabled.
+     *
+     * @param message The message to be displayed in logs
+     */
+    public static void debugLog(String message) {
+        if (isDebugMode()) {
+            log(message);
+        }
+    }
+
+    /**
+     * Displays a message in Xposed Logs and logcat.
+     *
+     * @param message The message to be displayed in logs
+     */
+    public static void log(String message) {
+        XposedBridge.log("[" + Common.getInstance().TAG + "] " + message);
+    }
+
+    /**
+     * Indicates whether Debug Mode is enabled based on whether the hard-coded flag is enabled or
+     * by the user enabling the setting themselves.
+     *
+     * @return Returns true if Debug Mode is enabled, otherwise return false.
+     */
+    public static boolean isDebugMode() {
+        // Hard-coded flag check
+        if (Common.getInstance().DEBUG) {
+            return true;
+        }
+
+        // Load XSharedPreferences before we start checking if debug mode is enabled from user.
+        if (prefs == null) {
+            refreshSharedPreferences(false);
+        }
+
+        // Attempt to check if debug mode is toggled by the user
+        // Use RemotePreference first as this will be have the most recent (and stable) data.
+        // Use XSharedPreference instance if RemotePreference instance doesn't exist yet.
+        if(sharedPreferences != null) {
+            return sharedPreferences.getBoolean(PreferencesSettings.KEYS.MAIN.DEBUG, PreferencesSettings.DEFAULT_VALUES.MAIN.DEBUG);
+        } else {
+            return prefs.getBoolean(PreferencesSettings.KEYS.MAIN.DEBUG, PreferencesSettings.DEFAULT_VALUES.MAIN.DEBUG);
+        }
+    }
+
+
+    /**
+     * Reloads and refreshes the package's shared preferences file to reload new confirgurations
+     * that may have changed on runtime.
+     *
+     * @param displayLogs To show logs or not.
+     */
+    public static void refreshSharedPreferences(boolean displayLogs) {
+        prefs = new XSharedPreferences(Common.getInstance().SHARED_PREFS_FILENAME);
+        prefs.makeWorldReadable();
+        prefs.reload();
+
+        // Only continue if we want to produce logging
+        if(!displayLogs) {
+            return;
+        }
+
+        // Logging the properties to see if the file is actually readable
+        log("Shared Preferences Properties:");
+        log("\tWorld Readable: " + prefs.makeWorldReadable());
+        log("\tPath: " + prefs.getFile().getAbsolutePath());
+        log("\tFile Readable: " + prefs.getFile().canRead());
+        log("\tExists: " + prefs.getFile().exists());
+
+        // Display the preferences loaded, only if the file was readable otherwise display an error
+        if (prefs.getAll().size() == 0) {
+            log("Shared Preferences seems not to be initialized or does not have read permissions. Common on heavy ROMs with SELinux enforcing.");
+            log("Loaded Shared Preferences Defaults Instead.");
+        } else {
+            log("");
+            log("Loaded Shared Preferences:");
+            Map<String, ?> prefsMap = prefs.getAll();
+            for(String key: prefsMap.keySet()) {
+                String val = prefsMap.get(key).toString();
+                log("\t " + key + ": " + val);
+            }
+        }
+    }
+
+
+    @Override
+    public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) throws Throwable {
+        refreshSharedPreferences(false);
+        XposedBridge.log("Module Loaded (Debug Mode: " + (isDebugMode() ? "ON" : "OFF") + ")");
+    }
 
     @Override
     public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
+        // Don't handle package param unless its ANZ, Semble, TVNZ OnDemand or 3NOW being loaded
+        if(!(loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_ANZ_AU_MOBILE_PAY) ||
+                loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_ANZ_AU_SHIELD) ||
+                loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_WESTPAC))) {
+            return;
+        }
+
+        // Hook the Application class of each application supported by SuperKiwi. This allows us
+        // to have some application Context and use it to update the RemotePreferences Content Provider
+        // and the other information. This allows us to read SharedPreference from the app process
+        // without tripping SELinux (when it's in enforcing mode)
+        XposedHelpers.findAndHookMethod("android.app.Application", loadPackageParam.classLoader, "onCreate", new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                sharedPreferences = new RemotePreferences((Context) param.thisObject, "nz.pbomb.xposed.anzmods.provider.preferences", Common.getInstance().PACKAGE_APP);
+            }
+        });
+
+
         if (loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_ANZ_AU_MOBILE_PAY)) {
             /* 1.0.2 Code that is obsolete
             // Modification Check 1
@@ -27,31 +149,56 @@ public class XposedMod implements IXposedHookLoadPackage {
             */
 
             // Modification Check - Add Flags to Collection if bad things are detected. Therefore return empty collection
-            Object collection = XposedHelpers.newInstance(XposedHelpers.findClass("com.anz.util.Collection", loadPackageParam.classLoader));
-            XposedHelpers.findAndHookMethod("va", loadPackageParam.classLoader, "a", XC_MethodReplacement.returnConstant(collection));
+            final Object collection = XposedHelpers.newInstance(XposedHelpers.findClass("com.anz.util.Collection", loadPackageParam.classLoader));
+
+            XposedHelpers.findAndHookMethod("va", loadPackageParam.classLoader, "a", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.ANZ_MOBILE_PAY.SYSTEM_INTEGRITY, PreferencesSettings.DEFAULT_VALUES.ANZ_MOBILE_PAY.SYSTEM_INTEGRITY)) {
+                        param.setResult(collection);
+                    }
+                }
+            });
 
             //Disable Debug Enabled Check
-            XposedHelpers.findAndHookMethod("amz", loadPackageParam.classLoader, "c", XC_MethodReplacement.returnConstant(false));
+            XposedHelpers.findAndHookMethod("amz", loadPackageParam.classLoader, "c", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.ANZ_MOBILE_PAY.DEVELOPER_SETTINGS, PreferencesSettings.DEFAULT_VALUES.ANZ_MOBILE_PAY.DEVELOPER_SETTINGS)) {
+                        param.setResult(false);
+                    }
+                }
+            });
 
         } else if (loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_ANZ_AU_SHIELD)) {
             // Developer Settings Check 1
-            XposedHelpers.findAndHookMethod("enterprise.com.anz.shield.a.g", loadPackageParam.classLoader, "a", Context.class, XC_MethodReplacement.returnConstant(false));
+            XposedHelpers.findAndHookMethod("enterprise.com.anz.shield.a.g", loadPackageParam.classLoader, "a", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.ANZ_SHIELD.DEVELOPER_SETTINGS, PreferencesSettings.DEFAULT_VALUES.ANZ_SHIELD.DEVELOPER_SETTINGS)) {
+                        param.setResult(false);
+                    }
+                }
+            });
+
         } else if (loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_WESTPAC)) {
             XposedHelpers.findAndHookMethod("com.splunk.mint.Utils", loadPackageParam.classLoader, "checkForRoot", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    if(Common.getInstance().DEBUG) {
-                        XposedBridge.log("Westpac - com.splunk.mint.Utils.checkForRoot() override.");
-                        //Log.d("SuperKiwi", Log.getStackTraceString(new Exception()));
+                    if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
+                        if(isDebugMode()) {
+                            XposedBridge.log("Westpac - com.splunk.mint.Utils.checkForRoot() override.");
+                            //Log.d("SuperKiwi", Log.getStackTraceString(new Exception()));
+                        }
+                        param.setResult(false);
                     }
-                    param.setResult(false);
                 }
             });
 
             XposedHelpers.findAndHookMethod("com.westpac.banking.android.commons.environment.AndroidEnvironmentProvider", loadPackageParam.classLoader, "isDeviceRooted", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    if(Common.getInstance().DEBUG) {
+                    if(isDebugMode()) {
                         XposedBridge.log("Westpac - com.westpac.banking.android.commons.environment.AndroidEnvironmentProvider.isDeviceRooted() override.");
                         //Log.d("SuperKiwi", Log.getStackTraceString(new Exception()));
                     }
