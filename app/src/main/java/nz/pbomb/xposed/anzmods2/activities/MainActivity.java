@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSharedPreferences = getSharedPreferences(Common.getInstance().PACKAGE_APP, Context.MODE_WORLD_READABLE);
+        mSharedPreferences = getSharedPreferences(Common.getInstance().SHARED_PREFS_FILENAME, Context.MODE_WORLD_READABLE);
 
         preferenceFragment = (PreferenceFragment) getFragmentManager().findFragmentById(R.id.MainActivity_PreferenceFragment);
 
