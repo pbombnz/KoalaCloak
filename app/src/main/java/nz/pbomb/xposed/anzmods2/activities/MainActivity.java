@@ -70,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
             /*if(Common.getInstance().DEBUG) {
                 preferenceFragment.findPreference(PreferencesSettings.KEYS.MAIN.DEBUG).setEnabled(false);
             }*/
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
 
             if (!isApplicationInstalled(Common.getInstance().PACKAGE_ANZ_AU_MOBILE_PAY)) {
                 preferenceFragment.findPreference(PreferencesSettings.KEYS.MAIN.ANZ_MOBILE_PAY).setEnabled(false);
@@ -82,8 +88,6 @@ public class MainActivity extends AppCompatActivity {
             if (!isApplicationInstalled(Common.getInstance().PACKAGE_WESTPAC)) {
                 preferenceFragment.findPreference(PreferencesSettings.KEYS.MAIN.WESTPAC).setEnabled(false);
             }
-
-            return null;
         }
     }
 
