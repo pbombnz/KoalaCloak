@@ -131,7 +131,7 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
         XposedHelpers.findAndHookMethod("android.app.Application", loadPackageParam.classLoader, "onCreate", new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                sharedPreferences = new RemotePreferences((Context) param.thisObject, "nz.pbomb.xposed.anzmods2.provider.preferences", Common.getInstance().PACKAGE_APP);
+                sharedPreferences = new RemotePreferences((Context) param.thisObject, "nz.pbomb.xposed.anzmods2.preferences.provider", Common.getInstance().SHARED_PREFS_FILENAME);
                 debugLog("SharedPreferences Provider loaded from "+((Context) param.thisObject).getApplicationContext().getPackageName()+".");
             }
         });
@@ -173,7 +173,7 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
 
         } else if (loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_ANZ_AU_SHIELD)) {
             // Developer Settings Check 1
-            XposedHelpers.findAndHookMethod("enterprise.com.anz.shield.a.g", loadPackageParam.classLoader, "a", new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod("enterprise.com.anz.shield.a.g", loadPackageParam.classLoader, "a", Context.class, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.ANZ_SHIELD.DEVELOPER_SETTINGS, PreferencesSettings.DEFAULT_VALUES.ANZ_SHIELD.DEVELOPER_SETTINGS)) {

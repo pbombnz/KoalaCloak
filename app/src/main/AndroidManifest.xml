@@ -20,7 +20,7 @@
 
         <provider
             android:name=".preferences.PreferenceProvider"
-            android:authorities="nz.pbomb.xposed2.anzmods.preferences.provider"
+            android:authorities="nz.pbomb.xposed.anzmods2.preferences.provider"
             android:exported="true" />
 
         <activity
