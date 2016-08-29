@@ -14,7 +14,7 @@
             />
         <Preference
             android:key="westpacPrefs"
-            android:title="@string/MainActivity_PreferenceFragment_westpacPrefs_title"
+            android:title="@string/MainActivity_PreferenceFragment__westpacPrefs_title"
             android:summary="@string/MainActivity_PreferenceFragment__westpacPrefs_summary"
             />
     </PreferenceCategory>
