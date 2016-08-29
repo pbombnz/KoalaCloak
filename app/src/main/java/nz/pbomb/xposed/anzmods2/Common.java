@@ -5,6 +5,7 @@ public class Common {
     private static Common ourInstance = new Common();
 
     public final boolean DEBUG = false;
+    public final String TAG = "KoalaCloak:Mod"; // Tag used for debugLog
 
     public final String PACKAGE_APP = "nz.pbomb.xposed.anzmods2";
     public final String PACKAGE_ANZ_AU_MOBILE_PAY = "com.anz.mobilepay";

@@ -11,18 +11,10 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class XposedMod implements IXposedHookLoadPackage {
-    private static final boolean DEBUG_TRACE = false;
-
-    private static final String ANZ_AU_MOBILE_PAY = "com.anz.mobilepay";
-    private static final String ANZ_AU_SHIELD = "enterprise.com.anz.shield";
-
-    private static final String NAB = "au.com.nab.mobile";
-
-    private static final String WESTPAC = "org.westpac.bank";
 
     @Override
     public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
-        if (loadPackageParam.packageName.equals(ANZ_AU_MOBILE_PAY)) {
+        if (loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_ANZ_AU_MOBILE_PAY)) {
             /* 1.0.2 Code that is obsolete
             // Modification Check 1
             //XposedHelpers.findAndHookMethod("anj", loadPackageParam.classLoader, "a", XC_MethodReplacement.returnConstant(false));
@@ -41,14 +33,14 @@ public class XposedMod implements IXposedHookLoadPackage {
             //Disable Debug Enabled Check
             XposedHelpers.findAndHookMethod("amz", loadPackageParam.classLoader, "c", XC_MethodReplacement.returnConstant(false));
 
-        } else if (loadPackageParam.packageName.equals(ANZ_AU_SHIELD)) {
+        } else if (loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_ANZ_AU_SHIELD)) {
             // Developer Settings Check 1
             XposedHelpers.findAndHookMethod("enterprise.com.anz.shield.a.g", loadPackageParam.classLoader, "a", Context.class, XC_MethodReplacement.returnConstant(false));
-        } else if (loadPackageParam.packageName.equals(WESTPAC)) {
+        } else if (loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_WESTPAC)) {
             XposedHelpers.findAndHookMethod("com.splunk.mint.Utils", loadPackageParam.classLoader, "checkForRoot", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    if(DEBUG_TRACE) {
+                    if(Common.getInstance().DEBUG) {
                         XposedBridge.log("Westpac - com.splunk.mint.Utils.checkForRoot() override.");
                         //Log.d("SuperKiwi", Log.getStackTraceString(new Exception()));
                     }
@@ -59,7 +51,7 @@ public class XposedMod implements IXposedHookLoadPackage {
             XposedHelpers.findAndHookMethod("com.westpac.banking.android.commons.environment.AndroidEnvironmentProvider", loadPackageParam.classLoader, "isDeviceRooted", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    if(DEBUG_TRACE) {
+                    if(Common.getInstance().DEBUG) {
                         XposedBridge.log("Westpac - com.westpac.banking.android.commons.environment.AndroidEnvironmentProvider.isDeviceRooted() override.");
                         //Log.d("SuperKiwi", Log.getStackTraceString(new Exception()));
                     }
