@@ -2,15 +2,15 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/NestedPreferenceActivity_PreferenceFragment__PreferenceCategory_title">
-        <Preference
+        <CheckBoxPreference
             android:key="anzMobilePaySystemIntegrity"
             android:title="@string/NestedPreferenceActivity_PreferenceFragment__anzMobilePaySystemIntegrity_title"
             android:summary="@string/NestedPreferenceActivity_PreferenceFragment__anzMobilePaySystemIntegrity_summary"
             />
-        <Preference
-            android:key="anzMobilePayDebugSettingDetection"
-            android:title="@string/NestedPreferenceActivity_PreferenceFragment__anzMobilePayDebugSettingDetection_title"
-            android:summary="@string/NestedPreferenceActivity_PreferenceFragment__anzMobilePayDebugSettingDetection_summary"
+        <CheckBoxPreference
+            android:key="anzMobilePayDeveloperSettings"
+            android:title="@string/NestedPreferenceActivity_PreferenceFragment__anzMobilePayDeveloperSettings_title"
+            android:summary="@string/NestedPreferenceActivity_PreferenceFragment__anzMobilePayDeveloperSettings_summary"
             />
     </PreferenceCategory>
 </PreferenceScreen>

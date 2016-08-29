@@ -2,10 +2,10 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/NestedPreferenceActivity_PreferenceFragment__PreferenceCategory_title">
-        <Preference
-            android:key="anzShieldDeveloperSettingsInvisible"
-            android:title="@string/NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettingsInvisible_title"
-            android:summary="@string/NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettingsInvisible_summary"
+        <CheckBoxPreference
+            android:key="anzShieldDeveloperSettings"
+            android:title="@string/NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettings_title"
+            android:summary="@string/NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettings_summary"
             />
     </PreferenceCategory>
 </PreferenceScreen>

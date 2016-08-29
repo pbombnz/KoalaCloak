@@ -68,12 +68,12 @@
 
     <string name="NestedPreferenceActivity_PreferenceFragment__PreferenceCategory_title">Application Toggles</string>
 
-    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePaySystemIntegrity_title" />
-    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePaySystemIntegrity_summary" />
-    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePayDebugSettingDetection_title" />
-    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePayDebugSettingDetection_summary" />
-    <string name="NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettingsInvisible_title" />
-    <string name="NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettingsInvisible_summary" />
-    <string name="NestedPreferenceActivity_PreferenceFragment__westpacRootDetection_title" />
-    <string name="NestedPreferenceActivity_PreferenceFragment__westpacRootDetectionRootDetection_summary" />
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePaySystemIntegrity_title">System Integrity Checking</string>
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePaySystemIntegrity_summary">This will bypass all the various system integrity checks so your device appears as if it was unmodified to ANZ.</string>
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePayDeveloperSettings_title">Hide Debugging/Developer Options</string>
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzMobilePayDeveloperSettings_summary">This will tell ANZ Mobile Pay that debug/developer options are disabled even when they are enabled. Handy for Developers.</string>
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettings_title">Hide Debugging/Developer Options</string>
+    <string name="NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettings_summary">This will tell ANZ Shield that debug/developer options are disabled even when they are enabled. Handy for Developers.</string>
+    <string name="NestedPreferenceActivity_PreferenceFragment__westpacRootDetection_title">Root Detection</string>
+    <string name="NestedPreferenceActivity_PreferenceFragment__westpacRootDetectionRootDetection_summary">This will bypass root detection which allows you to enabled Tap\'n\'Pay on your mobile device.</string>
 </resources>

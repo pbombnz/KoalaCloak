@@ -2,7 +2,7 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/NestedPreferenceActivity_PreferenceFragment__PreferenceCategory_title">
-        <Preference
+        <CheckBoxPreference
             android:key="westpacRootDetection"
             android:title="@string/NestedPreferenceActivity_PreferenceFragment__westpacRootDetection_title"
             android:summary="@string/NestedPreferenceActivity_PreferenceFragment__westpacRootDetectionRootDetection_summary"

@@ -20,11 +20,11 @@ public class PreferencesSettings {
     public static final class KEYS {
         public static final class ANZ_MOBILE_PAY {
             public static final String SYSTEM_INTEGRITY = "anzMobilePaySystemIntegrity";
-            public static final String DEBUG_SETTINGS_DETECTION = "anzMobilePayDebugSettingDetection";
+            public static final String DEBUG_SETTINGS_DETECTION = "anzMobilePayDeveloperSettings";
         }
 
         public static final class ANZ_SHIELD {
-            public static final String  DEVELOPER_SETTINGS = "anzShieldDeveloperSettingsInvisible";
+            public static final String  DEVELOPER_SETTINGS = "anzShieldDeveloperSettings";
         }
 
         public static final class WESTPAC {
