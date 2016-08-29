@@ -31,20 +31,20 @@ public class MainActivity_PreferenceFragment extends PreferenceFragment implemen
             case PreferencesSettings.KEYS.MAIN.ANZ_MOBILE_PAY:
                 intent = new Intent(getActivity(), NestedPreferenceActivity.class);
                 intent.putExtra("id", R.xml.preferences__anz_mobile_pay);
-                intent.putExtra("title", getString(R.string.app_name));
-                intent.putExtra("preference", preference.getKey());
+                intent.putExtra("title", preference.getTitle());
+                //intent.putExtra("preference", preference.getKey());
                 break;
             case PreferencesSettings.KEYS.MAIN.ANZ_SHIELD:
                 intent = new Intent(getActivity(), NestedPreferenceActivity.class);
                 intent.putExtra("id", R.xml.preferences__anz_shield);
-                intent.putExtra("title", getString(R.string.app_name));
-                intent.putExtra("preference", preference.getKey());
+                intent.putExtra("title", preference.getTitle());
+                //intent.putExtra("preference", preference.getKey());
                 break;
             case PreferencesSettings.KEYS.MAIN.WESTPAC:
                 intent = new Intent(getActivity(), NestedPreferenceActivity.class);
                 intent.putExtra("id", R.xml.preferences__westpac);
-                intent.putExtra("title", getString(R.string.app_name));
-                intent.putExtra("preference", preference.getKey());
+                intent.putExtra("title", preference.getTitle());
+                //intent.putExtra("preference", preference.getKey());
                 break;
             /*case PREFERENCES.KEYS.MAIN.DEBUG:
                 CheckBoxPreference checkBoxPreference = (CheckBoxPreference) preference;
