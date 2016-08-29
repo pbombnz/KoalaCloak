@@ -1,10 +1,14 @@
 package nz.pbomb.xposed.anzmods2.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
+import nz.pbomb.xposed.anzmods2.Common;
 import nz.pbomb.xposed.anzmods2.R;
 import nz.pbomb.xposed.anzmods2.activities.NestedPreferenceActivity;
 import nz.pbomb.xposed.anzmods2.preferences.PreferencesSettings;
@@ -22,6 +26,7 @@ public class MainActivity_PreferenceFragment extends PreferenceFragment implemen
         findPreference(PreferencesSettings.KEYS.MAIN.ANZ_MOBILE_PAY).setOnPreferenceClickListener(this);
         findPreference(PreferencesSettings.KEYS.MAIN.ANZ_SHIELD).setOnPreferenceClickListener(this);
         findPreference(PreferencesSettings.KEYS.MAIN.WESTPAC).setOnPreferenceClickListener(this);
+        findPreference(PreferencesSettings.KEYS.MAIN.DEBUG).setOnPreferenceClickListener(this);
     }
 
     @Override
@@ -46,9 +51,9 @@ public class MainActivity_PreferenceFragment extends PreferenceFragment implemen
                 intent.putExtra("title", preference.getTitle());
                 //intent.putExtra("preference", preference.getKey());
                 break;
-            /*case PREFERENCES.KEYS.MAIN.DEBUG:
+            case PreferencesSettings.KEYS.MAIN.DEBUG:
                 CheckBoxPreference checkBoxPreference = (CheckBoxPreference) preference;
-                if(!GLOBAL.DEBUG) {
+                if(!Common.getInstance().DEBUG) {
                     if (checkBoxPreference.isChecked()) {
                         getActivity().setTitle(getResources().getString(R.string.app_name) + " (Debug Mode)");
                     } else {
@@ -56,12 +61,11 @@ public class MainActivity_PreferenceFragment extends PreferenceFragment implemen
                     }
                 }
 
-                SharedPreferences sharedPref = getActivity().getSharedPreferences(PREFERENCES.SHARED_PREFS_FILE_NAME, Context.MODE_WORLD_READABLE);
+                SharedPreferences sharedPref = getActivity().getSharedPreferences(Common.getInstance().SHARED_PREFS_FILENAME, Context.MODE_WORLD_READABLE);
                 SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
-                sharedPrefEditor.putBoolean(PREFERENCES.KEYS.MAIN.DEBUG, checkBoxPreference.isChecked());
+                sharedPrefEditor.putBoolean(PreferencesSettings.KEYS.MAIN.DEBUG, checkBoxPreference.isChecked());
                 sharedPrefEditor.apply();
-
-                return true;*/
+                return true;
         }
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);

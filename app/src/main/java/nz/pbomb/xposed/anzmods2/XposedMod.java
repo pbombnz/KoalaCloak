@@ -131,7 +131,8 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
         XposedHelpers.findAndHookMethod("android.app.Application", loadPackageParam.classLoader, "onCreate", new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                sharedPreferences = new RemotePreferences((Context) param.thisObject, "nz.pbomb.xposed.anzmods.provider.preferences", Common.getInstance().PACKAGE_APP);
+                sharedPreferences = new RemotePreferences((Context) param.thisObject, "nz.pbomb.xposed.anzmods2.provider.preferences", Common.getInstance().PACKAGE_APP);
+                debugLog("SharedPreferences Provider loaded from "+((Context) param.thisObject).getApplicationContext().getPackageName()+".");
             }
         });
 
@@ -186,10 +187,7 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
-                        if(isDebugMode()) {
-                            XposedBridge.log("Westpac - com.splunk.mint.Utils.checkForRoot() override.");
-                            //Log.d("SuperKiwi", Log.getStackTraceString(new Exception()));
-                        }
+                        debugLog("Westpac Mobile Banking - com.splunk.mint.Utils.checkForRoot() called.");
                         param.setResult(false);
                     }
                 }
@@ -198,10 +196,7 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
             XposedHelpers.findAndHookMethod("com.westpac.banking.android.commons.environment.AndroidEnvironmentProvider", loadPackageParam.classLoader, "isDeviceRooted", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    if(isDebugMode()) {
-                        XposedBridge.log("Westpac - com.westpac.banking.android.commons.environment.AndroidEnvironmentProvider.isDeviceRooted() override.");
-                        //Log.d("SuperKiwi", Log.getStackTraceString(new Exception()));
-                    }
+                    debugLog("Westpac - com.westpac.banking.android.commons.environment.AndroidEnvironmentProvider.isDeviceRooted() called.");
                     param.setResult(false);
                 }
             });

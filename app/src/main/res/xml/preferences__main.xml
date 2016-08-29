@@ -18,4 +18,12 @@
             android:summary="@string/MainActivity_PreferenceFragment__westpacPrefs_summary"
             />
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="Other">
+        <CheckBoxPreference
+            android:key="debug"
+            android:title="@string/MainActivity_PreferenceFragment__debug_title"
+            android:summary="@string/MainActivity_PreferenceFragment__debug_summary"
+            />
+    </PreferenceCategory>
 </PreferenceScreen>

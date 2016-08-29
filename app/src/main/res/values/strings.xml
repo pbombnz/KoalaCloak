@@ -76,4 +76,6 @@
     <string name="NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettings_summary">This will tell ANZ Shield that debug/developer options are disabled even when they are enabled. Handy for Developers.</string>
     <string name="NestedPreferenceActivity_PreferenceFragment__westpacRootDetection_title">Root Detection</string>
     <string name="NestedPreferenceActivity_PreferenceFragment__westpacRootDetectionRootDetection_summary">This will bypass root detection which allows you to enabled Tap\'n\'Pay on your mobile device.</string>
+    <string name="MainActivity_PreferenceFragment__debug_title">Debug Mode</string>
+    <string name="MainActivity_PreferenceFragment__debug_summary">This allows special debug messages and output to be displayed in Xposed Logs and/or logcat.</string>
 </resources>

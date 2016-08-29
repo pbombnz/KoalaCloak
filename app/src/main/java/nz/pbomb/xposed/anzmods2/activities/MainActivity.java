@@ -59,17 +59,17 @@ public class MainActivity extends AppCompatActivity {
             if (!mSharedPreferences.contains(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION)) {
                 sharedPrefEditor.putBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION);
             }
-            /*if (!mSharedPreferences.contains(PreferencesSettings.KEYS.MAIN.DEBUG)) {
+            if (!mSharedPreferences.contains(PreferencesSettings.KEYS.MAIN.DEBUG)) {
                 sharedPrefEditor.putBoolean(PreferencesSettings.KEYS.MAIN.DEBUG, PreferencesSettings.DEFAULT_VALUES.MAIN.DEBUG);
             }
-            if (mSharedPreferences.getBoolean(PreferencesSettings.KEYS.MAIN.DEBUG, PreferencesSettings.DEFAULT_VALUES.MAIN.DEBUG) || GLOBAL.DEBUG) {
+            if (mSharedPreferences.getBoolean(PreferencesSettings.KEYS.MAIN.DEBUG, PreferencesSettings.DEFAULT_VALUES.MAIN.DEBUG) || Common.getInstance().DEBUG) {
                 setTitle(getTitle() + " (Debug Mode)");
-            }*/
+            }
             sharedPrefEditor.apply();
 
-            /*if(Common.getInstance().DEBUG) {
+            if(Common.getInstance().DEBUG) {
                 preferenceFragment.findPreference(PreferencesSettings.KEYS.MAIN.DEBUG).setEnabled(false);
-            }*/
+            }
             return null;
         }
 
