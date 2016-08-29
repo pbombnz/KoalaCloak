@@ -15,6 +15,10 @@ public class PreferencesSettings {
         public static final class WESTPAC {
             public static final boolean ROOT_DETECTION = true; // true, means that the root mounts are hidden.
         }
+
+        public static final class MAIN {
+            public static final boolean DEBUG = false; // true, means that the root mounts are hidden.
+        }
     }
 
     public static final class KEYS {
@@ -38,7 +42,7 @@ public class PreferencesSettings {
             public static final String ANZ_SHIELD = "anzShieldPrefs";
             public static final String WESTPAC = "westpacPrefs";
 
-            // public static final String DEBUG = "debug";
+            public static final String DEBUG = "debug";
         }
     }
 }
