@@ -3,7 +3,6 @@ package nz.pbomb.xposed.anzmods2.activities;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,6 +46,8 @@ public class NestedPreferenceActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -55,5 +56,11 @@ public class NestedPreferenceActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
     }
 }

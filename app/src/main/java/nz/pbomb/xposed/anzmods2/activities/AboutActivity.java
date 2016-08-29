@@ -35,4 +35,10 @@ public class AboutActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.nothing, R.anim.fade_out);
+    }
 }

@@ -33,6 +33,13 @@ public class ContactActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.nothing, R.anim.fade_out);
+    }
+
     @OnClick(R.id.ContactActivity_TwitterButton)
     public void onTwitterButtonClicked() {
         try {

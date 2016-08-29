@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.nothing);
         return true;
     }
 }

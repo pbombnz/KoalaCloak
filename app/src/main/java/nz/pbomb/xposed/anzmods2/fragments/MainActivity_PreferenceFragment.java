@@ -64,6 +64,7 @@ public class MainActivity_PreferenceFragment extends PreferenceFragment implemen
                 return true;*/
         }
         startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
         return true;
     }
 }
