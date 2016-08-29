@@ -5,7 +5,7 @@ public class PreferencesSettings {
     public static final class DEFAULT_VALUES {
         public static final class ANZ_MOBILE_PAY {
             public static final boolean SYSTEM_INTEGRITY = true; // true, means that the root mounts are hidden.
-            public static final boolean DEBUG_SETTINGS_DETECTION = true;
+            public static final boolean DEVELOPER_SETTINGS = true;
         }
 
         public static final class ANZ_SHIELD {
@@ -20,7 +20,7 @@ public class PreferencesSettings {
     public static final class KEYS {
         public static final class ANZ_MOBILE_PAY {
             public static final String SYSTEM_INTEGRITY = "anzMobilePaySystemIntegrity";
-            public static final String DEBUG_SETTINGS_DETECTION = "anzMobilePayDeveloperSettings";
+            public static final String DEVELOPER_SETTINGS = "anzMobilePayDeveloperSettings";
         }
 
         public static final class ANZ_SHIELD {
