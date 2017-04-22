@@ -20,9 +20,9 @@
     <string name="MainActivity_PreferenceFragment__anzMobilePayPrefs_summary">Toggle settings to hide root and debug/developer options for ANZ Mobile Pay.</string>
     <string name="MainActivity_PreferenceFragment__anzShieldPrefs_title">ANZ Shield</string>
     <string name="MainActivity_PreferenceFragment__anzShieldPrefs_summary">Toggle settings to hide debug/developer options from ANZ Shield.</string>
-    <string name="MainActivity_PreferenceFragment__westpacPrefs_title">Westpac Mobile Banking (Untested Feature)</string>
+    <string name="MainActivity_PreferenceFragment__westpacPrefs_title">Westpac Mobile Banking (Not Working)</string>
     <string name="MainActivity_PreferenceFragment__westpacPrefs_summary">Toggle settings to hide root from the Westpac Mobile Banking application.\n\nPlease Note this is an untested feature, therefore if you use it please tell me the whether it succeeded for you or not.</string>
-    <string name="MainActivity_PreferenceFragment__commbankPrefs_title">Commbank (Untested Feature)</string>
+    <string name="MainActivity_PreferenceFragment__commbankPrefs_title">Commbank (Untested)</string>
     <string name="MainActivity_PreferenceFragment__commbankPrefs_summary">Toggle settings to hide root from the Commbank Banking application.\n\nPlease Note this is an untested feature, therefore if you use it please tell me the whether it succeeded for you or not.</string>
 
     <string name="MainActivity_PreferenceFragment__debug_title">Debug Mode</string>
