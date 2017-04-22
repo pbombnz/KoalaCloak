@@ -196,7 +196,7 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
 
     private void handleWestpacPackage(final XC_LoadPackage.LoadPackageParam loadPackageParam) {
         //
-        XposedHelpers.findAndHookMethod("o.C1748Pm", loadPackageParam.classLoader, "a", new XC_MethodHook() {
+        XposedHelpers.findAndHookMethod("o.Pm", loadPackageParam.classLoader, "a", new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
@@ -204,7 +204,7 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
                 }
             }
         });
-        XposedHelpers.findAndHookMethod("o.C1748Pm", loadPackageParam.classLoader, "b", String.class, new XC_MethodHook() {
+        XposedHelpers.findAndHookMethod("o.Pm", loadPackageParam.classLoader, "b", String.class, new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
@@ -214,7 +214,7 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
         });
 
         //
-        XposedHelpers.findAndHookMethod("o.C1983ahZ", loadPackageParam.classLoader, "c", new XC_MethodHook() {
+        XposedHelpers.findAndHookMethod("o.ahZ", loadPackageParam.classLoader, "c", new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
@@ -222,7 +222,7 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
                 }
             }
         });
-        XposedHelpers.findAndHookMethod("o.C1983ahZ", loadPackageParam.classLoader, "a", String.class, new XC_MethodHook() {
+        XposedHelpers.findAndHookMethod("o.ahZ", loadPackageParam.classLoader, "a", String.class, new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
@@ -239,6 +239,14 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
                     Class KJ_Class = XposedHelpers.findClass("o.KJ", loadPackageParam.classLoader);
                     XposedHelpers.setStaticBooleanField(KJ_Class, "n", false);
                 }
+            }
+        });
+
+        ///Eyeing up methods of suspect
+        XposedHelpers.findAndHookMethod("o.Pm", loadPackageParam.classLoader, "k", new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                log("The TRUE PB:" + (String) param.getResult());
             }
         });
 
