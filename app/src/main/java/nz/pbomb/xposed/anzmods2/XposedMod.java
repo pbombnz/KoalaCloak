@@ -19,6 +19,8 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import nz.pbomb.xposed.anzmods2.preferences.PreferencesSettings;
 
 public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage {
+    private static final String TAG = "KoalaCloak:Mod"; // Tag used for debugLog
+
     private static XSharedPreferences prefs;
     private static SharedPreferences sharedPreferences;
 
@@ -39,7 +41,7 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
      * @param message The message to be displayed in logs
      */
     public static void log(String message) {
-        XposedBridge.log("[" + Common.getInstance().TAG + "] " + message);
+        XposedBridge.log("[" + TAG + "] " + message);
     }
 
     /**
@@ -138,69 +140,120 @@ public class XposedMod implements IXposedHookZygoteInit, IXposedHookLoadPackage 
 
 
         if (loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_ANZ_AU_MOBILE_PAY)) {
-            /* 1.0.2 Code that is obsolete
-            // Modification Check 1
-            //XposedHelpers.findAndHookMethod("anj", loadPackageParam.classLoader, "a", XC_MethodReplacement.returnConstant(false));
-
-            // USB Debugging Mode Check 1
-            //XposedHelpers.findAndHookMethod("anj", loadPackageParam.classLoader, "c", Context.class, XC_MethodReplacement.returnConstant(true));
-
-            // Modification Check 2
-            //XposedHelpers.findAndHookMethod("anh", loadPackageParam.classLoader, "b", XC_MethodReplacement.returnConstant(false));
-            */
-
-            // Modification Check - Add Flags to Collection if bad things are detected. Therefore return empty collection
-            final Object collection = XposedHelpers.newInstance(XposedHelpers.findClass("com.anz.util.Collection", loadPackageParam.classLoader));
-
-            XposedHelpers.findAndHookMethod("va", loadPackageParam.classLoader, "a", new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.ANZ_MOBILE_PAY.SYSTEM_INTEGRITY, PreferencesSettings.DEFAULT_VALUES.ANZ_MOBILE_PAY.SYSTEM_INTEGRITY)) {
-                        param.setResult(collection);
-                    }
-                }
-            });
-
-            //Disable Debug Enabled Check
-            XposedHelpers.findAndHookMethod("amz", loadPackageParam.classLoader, "c", new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.ANZ_MOBILE_PAY.DEVELOPER_SETTINGS, PreferencesSettings.DEFAULT_VALUES.ANZ_MOBILE_PAY.DEVELOPER_SETTINGS)) {
-                        param.setResult(false);
-                    }
-                }
-            });
+            debugLog("Hooking Methods for ANZ Mobile Pay Application.");
+            handleANZMobilePayPackage(loadPackageParam);
 
         } else if (loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_ANZ_AU_SHIELD)) {
-            // Developer Settings Check 1
-            XposedHelpers.findAndHookMethod("enterprise.com.anz.shield.a.g", loadPackageParam.classLoader, "a", Context.class, new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.ANZ_SHIELD.DEVELOPER_SETTINGS, PreferencesSettings.DEFAULT_VALUES.ANZ_SHIELD.DEVELOPER_SETTINGS)) {
-                        param.setResult(false);
-                    }
-                }
-            });
+            debugLog("Hooking Methods for ANZ Shield Application.");
+            handleANZShieldPackage(loadPackageParam);
 
         } else if (loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_WESTPAC)) {
-            XposedHelpers.findAndHookMethod("com.splunk.mint.Utils", loadPackageParam.classLoader, "checkForRoot", new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
-                        debugLog("Westpac Mobile Banking - com.splunk.mint.Utils.checkForRoot() called.");
-                        param.setResult(false);
-                    }
-                }
-            });
+            debugLog("Hooking Methods for Westpac Mobile Banking Application.");
+            handleWestpacPackage(loadPackageParam);
 
-            XposedHelpers.findAndHookMethod("com.westpac.banking.android.commons.environment.AndroidEnvironmentProvider", loadPackageParam.classLoader, "isDeviceRooted", new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    debugLog("Westpac - com.westpac.banking.android.commons.environment.AndroidEnvironmentProvider.isDeviceRooted() called.");
+        } else if (loadPackageParam.packageName.equals(Common.getInstance().PACKAGE_COMMBANK)) {
+            debugLog("Hooking Methods for Commbank Application.");
+            handleCommbankPackage(loadPackageParam);
+        }
+    }
+
+    private void handleANZMobilePayPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
+        // Modification Check - Add Flags to Collection if bad things are detected. Therefore return empty collection
+        final Object collection = XposedHelpers.newInstance(XposedHelpers.findClass("com.anz.util.Collection", loadPackageParam.classLoader));
+
+        XposedHelpers.findAndHookMethod("va", loadPackageParam.classLoader, "a", new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.ANZ_MOBILE_PAY.SYSTEM_INTEGRITY, PreferencesSettings.DEFAULT_VALUES.ANZ_MOBILE_PAY.SYSTEM_INTEGRITY)) {
+                    param.setResult(collection);
+                }
+            }
+        });
+
+        //Disable Debug Enabled Check
+        XposedHelpers.findAndHookMethod("amz", loadPackageParam.classLoader, "c", new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.ANZ_MOBILE_PAY.DEVELOPER_SETTINGS, PreferencesSettings.DEFAULT_VALUES.ANZ_MOBILE_PAY.DEVELOPER_SETTINGS)) {
                     param.setResult(false);
                 }
-            });
-        }
+            }
+        });
+
+    }
+
+    private void handleANZShieldPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
+        // Developer Settings Check 1
+        XposedHelpers.findAndHookMethod("enterprise.com.anz.shield.a.g", loadPackageParam.classLoader, "a", Context.class, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.ANZ_SHIELD.DEVELOPER_SETTINGS, PreferencesSettings.DEFAULT_VALUES.ANZ_SHIELD.DEVELOPER_SETTINGS)) {
+                    param.setResult(false);
+                }
+            }
+        });
+    }
+
+    private void handleWestpacPackage(final XC_LoadPackage.LoadPackageParam loadPackageParam) {
+        //
+        XposedHelpers.findAndHookMethod("o.C1748Pm", loadPackageParam.classLoader, "a", new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
+                    param.setResult(false);
+                }
+            }
+        });
+        XposedHelpers.findAndHookMethod("o.C1748Pm", loadPackageParam.classLoader, "b", String.class, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
+                    param.setResult(false);
+                }
+            }
+        });
+
+        //
+        XposedHelpers.findAndHookMethod("o.C1983ahZ", loadPackageParam.classLoader, "c", new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
+                    param.setResult(false);
+                }
+            }
+        });
+        XposedHelpers.findAndHookMethod("o.C1983ahZ", loadPackageParam.classLoader, "a", String.class, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
+                    param.setResult(false);
+                }
+            }
+        });
+
+        ///
+        XposedHelpers.findAndHookMethod("o.KJ", loadPackageParam.classLoader, "c", Context.class, String.class, new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION)) {
+                    Class KJ_Class = XposedHelpers.findClass("o.KJ", loadPackageParam.classLoader);
+                    XposedHelpers.setStaticBooleanField(KJ_Class, "n", false);
+                }
+            }
+        });
+
+    }
+
+    private void handleCommbankPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
+        // Splunk Mint Analytics Root Detection Disabled.
+        XposedHelpers.findAndHookMethod("com.splunk.mint.Utils", loadPackageParam.classLoader, "checkForRoot", new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                if (sharedPreferences.getBoolean(PreferencesSettings.KEYS.COMMBANK.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.COMMBANK.ROOT_DETECTION)) {
+                    param.setResult(false);
+                }
+            }
+        });
     }
         /*else if(loadPackageParam.packageName.equals(NAB)) {
         // NAB Root Bypass does not work.
