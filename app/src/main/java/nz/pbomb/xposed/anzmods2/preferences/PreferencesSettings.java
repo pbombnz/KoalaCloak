@@ -16,6 +16,10 @@ public class PreferencesSettings {
             public static final boolean ROOT_DETECTION = true; // true, means that the root mounts are hidden.
         }
 
+        public static final class COMMBANK {
+            public static final boolean ROOT_DETECTION = true; // true, means that the root mounts are hidden.
+        }
+
         public static final class MAIN {
             public static final boolean DEBUG = false; // true, means that the root mounts are hidden.
         }
@@ -33,14 +37,19 @@ public class PreferencesSettings {
 
         public static final class WESTPAC {
             public static final String ROOT_DETECTION = "westpacRootDetection";
-            // public static final String SPOOF_DEVICE = "anzSpoofDevice";
-            // public static final String SPOOF_DEVICE_CHOOSER = "anzSpoofDeviceChooser";
+            // public static final String SPOOF_DEVICE = "westpacSpoofDevice";
+            // public static final String SPOOF_DEVICE_CHOOSER = "westpacSpoofDeviceChooser";
+        }
+
+        public static final class COMMBANK {
+            public static final String ROOT_DETECTION = "commbankRootDetection";
         }
 
         public static final class MAIN {
             public static final String ANZ_MOBILE_PAY = "anzMobilePayPrefs";
             public static final String ANZ_SHIELD = "anzShieldPrefs";
             public static final String WESTPAC = "westpacPrefs";
+            public static final String COMMBANK = "commbankPrefs";
 
             public static final String DEBUG = "debug";
         }

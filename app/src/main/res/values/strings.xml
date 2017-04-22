@@ -20,8 +20,10 @@
     <string name="MainActivity_PreferenceFragment__anzMobilePayPrefs_summary">Toggle settings to hide root and debug/developer options for ANZ Mobile Pay.</string>
     <string name="MainActivity_PreferenceFragment__anzShieldPrefs_title">ANZ Shield</string>
     <string name="MainActivity_PreferenceFragment__anzShieldPrefs_summary">Toggle settings to hide debug/developer options from ANZ Shield.</string>
-    <string name="MainActivity_PreferenceFragment__westpacPrefs_title">Westpac Mobile Banking</string>
+    <string name="MainActivity_PreferenceFragment__westpacPrefs_title">Westpac Mobile Banking (Untested Feature)</string>
     <string name="MainActivity_PreferenceFragment__westpacPrefs_summary">Toggle settings to hide root from the Westpac Mobile Banking application.\n\nPlease Note this is an untested feature, therefore if you use it please tell me the whether it succeeded for you or not.</string>
+    <string name="MainActivity_PreferenceFragment__commbankPrefs_title">Commbank (Untested Feature)</string>
+    <string name="MainActivity_PreferenceFragment__commbankPrefs_summary">Toggle settings to hide root from the Commbank Banking application.\n\nPlease Note this is an untested feature, therefore if you use it please tell me the whether it succeeded for you or not.</string>
 
     <string name="MainActivity_PreferenceFragment__debug_title">Debug Mode</string>
     <string name="MainActivity_PreferenceFragment__debug_summary">This allows special debug messages and output to be displayed in Xposed Logs and/or logcat.</string>
@@ -78,4 +80,7 @@
     <string name="NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettings_title">Hide Debugging/Developer Options</string>
     <string name="NestedPreferenceActivity_PreferenceFragment__anzShieldDeveloperSettings_summary">This will tell ANZ Shield that debug/developer options are disabled even when they are enabled. Handy for Developers.</string>
     <string name="NestedPreferenceActivity_PreferenceFragment__westpacRootDetection_title">Root Detection</string>
-    <string name="NestedPreferenceActivity_PreferenceFragment__westpacRootDetectionRootDetection_summary">This will bypass root detection which allows you to enabled Tap\'n\'Pay on your mobile device.</string></resources>
+    <string name="NestedPreferenceActivity_PreferenceFragment__westpacRootDetectionRootDetection_summary">This will bypass root detection which allows you to enabled Tap\'n\'Pay on your mobile device.</string>
+    <string name="NestedPreferenceActivity_PreferenceFragment__commbankRootDetection_title">Root Detection</string>
+    <string name="NestedPreferenceActivity_PreferenceFragment__commbankRootDetectionRootDetection_summary">This will bypass root detection which allows you to enabled Tap\'n\'Pay on your mobile device.</string>
+</resources>

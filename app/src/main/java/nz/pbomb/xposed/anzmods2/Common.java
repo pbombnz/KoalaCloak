@@ -13,6 +13,7 @@ public class Common {
     public final String PACKAGE_ANZ_AU_SHIELD = "enterprise.com.anz.shield";
     public final String PACKAGE_NAB = "au.com.nab.mobile";
     public final String PACKAGE_WESTPAC = "org.westpac.bank";
+    public final String PACKAGE_COMMBANK = "com.commbank.netbank";
 
     public final String SHARED_PREFS_FILENAME = PACKAGE_APP + "_preferences";
 

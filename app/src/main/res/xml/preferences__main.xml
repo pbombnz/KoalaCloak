@@ -17,6 +17,11 @@
             android:title="@string/MainActivity_PreferenceFragment__westpacPrefs_title"
             android:summary="@string/MainActivity_PreferenceFragment__westpacPrefs_summary"
             />
+        <Preference
+            android:key="commbankPrefs"
+            android:title="@string/MainActivity_PreferenceFragment__commbankPrefs_title"
+            android:summary="@string/MainActivity_PreferenceFragment__commbankPrefs_summary"
+            />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Other">

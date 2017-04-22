@@ -26,6 +26,7 @@ public class MainActivity_PreferenceFragment extends PreferenceFragment implemen
         findPreference(PreferencesSettings.KEYS.MAIN.ANZ_MOBILE_PAY).setOnPreferenceClickListener(this);
         findPreference(PreferencesSettings.KEYS.MAIN.ANZ_SHIELD).setOnPreferenceClickListener(this);
         findPreference(PreferencesSettings.KEYS.MAIN.WESTPAC).setOnPreferenceClickListener(this);
+        findPreference(PreferencesSettings.KEYS.MAIN.COMMBANK).setOnPreferenceClickListener(this);
         findPreference(PreferencesSettings.KEYS.MAIN.DEBUG).setOnPreferenceClickListener(this);
     }
 
@@ -48,6 +49,12 @@ public class MainActivity_PreferenceFragment extends PreferenceFragment implemen
             case PreferencesSettings.KEYS.MAIN.WESTPAC:
                 intent = new Intent(getActivity(), NestedPreferenceActivity.class);
                 intent.putExtra("id", R.xml.preferences__westpac);
+                intent.putExtra("title", preference.getTitle());
+                //intent.putExtra("preference", preference.getKey());
+                break;
+            case PreferencesSettings.KEYS.MAIN.COMMBANK:
+                intent = new Intent(getActivity(), NestedPreferenceActivity.class);
+                intent.putExtra("id", R.xml.preferences__commbank);
                 intent.putExtra("title", preference.getTitle());
                 //intent.putExtra("preference", preference.getKey());
                 break;

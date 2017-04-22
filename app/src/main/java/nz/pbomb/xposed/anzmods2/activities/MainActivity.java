@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
             if (!mSharedPreferences.contains(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION)) {
                 sharedPrefEditor.putBoolean(PreferencesSettings.KEYS.WESTPAC.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.WESTPAC.ROOT_DETECTION);
             }
+            if (!mSharedPreferences.contains(PreferencesSettings.KEYS.COMMBANK.ROOT_DETECTION)) {
+                sharedPrefEditor.putBoolean(PreferencesSettings.KEYS.COMMBANK.ROOT_DETECTION, PreferencesSettings.DEFAULT_VALUES.COMMBANK.ROOT_DETECTION);
+            }
             if (!mSharedPreferences.contains(PreferencesSettings.KEYS.MAIN.DEBUG)) {
                 sharedPrefEditor.putBoolean(PreferencesSettings.KEYS.MAIN.DEBUG, PreferencesSettings.DEFAULT_VALUES.MAIN.DEBUG);
             }
@@ -87,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
 
             if (!isApplicationInstalled(Common.getInstance().PACKAGE_WESTPAC)) {
                 preferenceFragment.findPreference(PreferencesSettings.KEYS.MAIN.WESTPAC).setEnabled(false);
+            }
+
+            if (!isApplicationInstalled(Common.getInstance().PACKAGE_COMMBANK)) {
+                preferenceFragment.findPreference(PreferencesSettings.KEYS.MAIN.COMMBANK).setEnabled(false);
             }
         }
     }
